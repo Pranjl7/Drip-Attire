@@ -1,0 +1,42 @@
+{
+  "name": "drip-attire",
+  "version": "1.0.0",
+  "description": "A modern streetwear eCommerce web app featuring trendy apparel, bold designs, and effortless style — built for the new generation of fashion.",
+  "repository": {
+    "type": "git",
+    "url": "yes"
+  },
+  "license": "ISC",
+  "author": "Pranjal Bhatt",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
+    "tailwind": "npx tailwindcss -i ./src/styles/input.css -o ./public/stylesheets/output.css --watch",
+    "conc": "concurrently \"nodemon src/server.js\" \"npm run tailwind\""
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "debug": "^4.4.3",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.2",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2",
+    "nodemon": "^3.1.10",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.18"
+  }
+}
