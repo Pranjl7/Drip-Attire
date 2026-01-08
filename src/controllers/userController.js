@@ -44,9 +44,10 @@ async function usersignup(req, res) {
 
         }
         else {
+            const message = check.error.issues.map(e => e.message)
             res.status(404).json({
                 success: false,
-                message: "Password should be atlest 8 digit with one uppercase, lowercase and special case character."
+                message: message
             })
         }
 
@@ -107,9 +108,10 @@ async function usersignin(req, res) {
             }
         }
         else {
+            const message = check.error.issues.map(e => e.message)
             res.status(404).json({
                 success: false,
-                message: "Password should be atlest 8 digit with one uppercase, lowercase and special case character."
+                message: message
             })
         }
 
