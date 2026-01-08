@@ -11,9 +11,7 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "NODE_ENV=production node server.js",
-    "dev": "NODE_ENV=development nodemon server.js",
+    "start": "node src/server.js",
     "tailwind": "npx tailwindcss -i ./src/styles/input.css -o ./public/stylesheets/output.css --watch",
     "conc": "concurrently \"nodemon src/server.js\" \"npm run tailwind\""
   },
@@ -31,6 +29,7 @@
     "morgan": "^1.10.1",
     "multer": "^2.0.2",
     "nodemon": "^3.1.10",
+    "serverless-http": "^4.0.0",
     "zod": "^4.1.12"
   },
   "devDependencies": {
