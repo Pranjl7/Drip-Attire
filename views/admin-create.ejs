@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drip Attire</title>
+    <link rel="stylesheet" href="/stylesheets/output.css">
+</head>
+
+<body class="min-h-screen flex flex-col">
+    <%-include('partials/admin-header')%>
+
+        <main class="flex-grow">
+            <form id="createProductForm" enctype="multipart/form-data"
+                class=" max-h-[67%] w-[70%] sm:w-[60%] md:w-[50%] lg:w-[40%] border bg-white mx-auto rounded-lg
+                mt-[12vh] pt-2 pl-7 flex flex-col gap-y-2 font-geist">
+
+                <label class="mt-1 w-full" for="name">NAME</label>
+                <input
+                    class="border rounded-md h-[35px] w-[35%] outline-none focus:ring-1 focus:ring-black/40 focus:border-black transition duration-200 px-2"
+                    type="text" name="name" id="name" placeholder="Name">
+
+                <label class="mt-1 w-full" for="description">DESCRIPTION</label>
+                <input
+                    class="border rounded-md h-[35px] w-[95%] outline-none focus:ring-1 focus:ring-black/40 focus:border-black transition duration-200 px-2"
+                    type="text" name="description" id="description" placeholder="Description">
+
+                <label class="mt-1 w-full" for="price">PRICE</label>
+                <input
+                    class="border rounded-md h-[35px] w-[20%] outline-none focus:ring-1 focus:ring-black/40 focus:border-black transition duration-200 px-2"
+                    type="number" name="price" id="price" placeholder="Price">
+
+                <div class="w-[90%] flex justify-start items-center mt-1 gap-x-2">
+                    <p class="">UPLOAD IMAGE</p>
+                    <label for="fileUpload"
+                        class="bg-blue-600 text-white px-3 py-1 rounded-md cursor-pointer text-[14px]">
+                        Browse
+                    </label>
+                    <input id="fileUpload" type="file" class="hidden" name="image">
+                </div>
+
+                <button class="h-[50px] w-[90%] border rounded-full font-bold mt-3 mb-5 bg-blue-600 text-white"
+                    type="submit">CREATE</button>
+            </form>
+        </main>
+
+        <%- include('partials/footer') %>
+        <script src="/javascripts/admin-create.js"></script>
+</body>
+
+</html>
