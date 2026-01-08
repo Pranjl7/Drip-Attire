@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drip Attire</title>
+</head>
+
+<body class="min-h-screen flex flex-col font-geist">
+    <%-include('partials/user-header')%>
+        <div class="flex-grow">
+
+            <div
+                class="w-[21rem] ml-6 sm:w-96 flex flex-col gap-y-5 mt-10 sm:ml-8 p-5 border rounded-md shadow overflow-auto relative">
+                <button onclick="logout()"
+                    class="bg-slate-900 text-white absolute rounded-md px-4 py-1.5 top-2 right-2">Logout</button>
+                <div class="flex items-center gap-x-4">
+                    <img id="image" class="size-24 rounded-full bg-cover bg-center overflow-hidden" alt="">
+                    <p id="name" class="text-xl font-medium border rounded-md px-2 py-1"></p>
+                </div>
+
+                <div class="flex flex-col gap-y-2">
+                    <p class="text-md font-medium">Emailid : <span id="email" class="text-slate-500"></span></p>
+                    <p class="text-md font-medium">Contact no : <span id="contactno" class="text-slate-500"></span></p>
+                </div>
+            </div>
+
+        </div>
+        <%-include('partials/footer')%>
+</body>
+
+<script>
+    (async () => {
+        res = await fetch("/api/user/account")
+        let data = await res.json()
+
+        if (res.ok) {
+            let user = data.message
+            document.querySelector("#name").textContent = `Hey, ${user.name}`
+            document.querySelector("#image").setAttribute("src", user.image)
+            document.querySelector("#email").textContent = `${user.emailid}`
+            document.querySelector("#contactno").textContent = `${user.contactno}`
+
+        }
+        else {
+            alert(data.message)
+        }
+    })()
+
+    async function logout() {
+        let confirmed = confirm("Confirm Logout?")
+        if (!confirmed) return
+
+        let res = await fetch("/api/user/logout", {
+            method: "DELETE"
+        })
+
+        let data = await res.json()
+        if (res.ok) {
+            window.location.href = "/"
+        }
+        else {
+            alert(data.message)
+        }
+    }
+</script>
+
+</html>
