@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drip Attire</title>
+</head>
+
+<body class="min-h-screen flex flex-col font-geist">
+    <%- include('partials/user-header') %>
+
+        <main class="w-[80%] flex justify-between flex-grow flex-col-reverse gap-y-4 gap-x-4 min-h-[50vh] mx-auto my-[7vh] 
+        sm:w-[70%] md:w-[60%] lg:w-[70%] lg:flex-row">
+
+            <!-- CART SECTION -->
+            <div class="w-full lg:min-w-[65%] flex flex-col border rounded-md">
+
+                <div class="flex justify-between items-center mt-4 mb-5">
+                    <h1 class="text-[25px] font-semibold indent-4">Cart</h1>
+                    <button id="clearcart"
+                        class="hidden mr-4 px-5 py-1.5 rounded-md bg-gray-950 text-white">Clear</button>
+                </div>
+
+                <!-- SIGNIN MESSAGE -->
+                <div id="msg-box" class="hidden flex-col justify-center items-center mt-10 mb-5">
+                    <div class="flex gap-x-2 items-center">
+                        <h1 id="cart-msg" class="text-2xl font-medium"></h1>
+                        <img class="size-10" src="/assets/emptycart.svg" alt="">
+                    </div>
+                    <a href="/user/signin">
+                        <button class="bg-gray-950 text-white px-5 py-2 mt-2 rounded-md">Sign in</button>
+                    </a>
+                </div>
+
+                <!-- EMPTY CART -->
+                <div id="empty-cart" class="hidden flex-col justify-center items-center mt-10 mb-5">
+                    <div class="flex gap-x-2 items-center">
+                        <h1 class="text-2xl font-medium">Cart is Empty!</h1>
+                        <img class="size-10" src="/assets/emptycart.svg" alt="">
+                    </div>
+                    <a href="/collection">
+                        <button class="bg-gray-950 text-white px-5 py-2 mt-2 rounded-md">
+                            Browse Collection
+                        </button>
+                    </a>
+                </div>
+
+                <!-- CART ITEMS BLOCK -->
+                <div id="cart-block" class="hidden flex-col">
+
+                    <!-- CART ITEM TEMPLATE -->
+                    <div id="cart-item" class="hidden justify-between w-[95%] h-[23vh] mx-auto mb-6">
+
+                        <div class="flex gap-x-2.5">
+                            <div
+                                class="img-box overflow-hidden rounded-lg max-h-[80%] w-[15vh] sm:max-h-[100%] sm:w-[20vh]">
+                                <img id="cart-image" class="h-full w-full bg-cover bg-center rounded-lg" />
+                            </div>
+
+                            <div class="h-full max-w-[25vw] flex flex-col justify-between">
+                                <div class="flex flex-col gap-y-1">
+                                    <p id="cart-desc" class="text-[17px] font-semibold"></p>
+                                    <p id="cart-name" class="hidden sm:block text-[16px]"></p>
+                                    <p id="cart-size" class="hidden sm:block text-[16px]">Size : S</p>
+                                </div>
+
+                                <div class="flex gap-x-5">
+                                    <button class="heart-btn">
+                                        <img class="hidden sm:block size-[22px]" src="/assets/Lheart.svg" alt="">
+                                    </button>
+
+                                    <button class="delete-btn">
+                                        <img class="size-[22px]" src="/assets/delete.svg" alt="">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-y-2.5 max-w-[15%]">
+                            <p id="cart-price" class="font-semibold"></p>
+
+                            <div class="flex items-center justify-end gap-x-3">
+                                <button class="minus-btn">
+                                    <img class="w-4 h-4" src="/assets/minus.svg" alt="">
+                                </button>
+
+                                <p id="cart-qty" class="font-semibold"></p>
+
+                                <button class="plus-btn">
+                                    <img class="w-4 h-4" src="/assets/plus.svg" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ORDER SUMMARY -->
+            <div class="w-full lg:min-w-[32%]">
+                <div class="min-h-[25vh] border rounded-md">
+                    <div class="w-[90%] mx-auto flex flex-col gap-y-2 my-4">
+                        <h1 class="text-2xl font-semibold mb-2">Order Summary</h1>
+
+                        <div class="flex justify-between">
+                            <p>Subtotal</p>
+                            <p id="subtotal" class="font-semibold">₹0.00</p>
+                        </div>
+
+                        <div class="flex justify-between mb-1">
+                            <p>Delivery</p>
+                            <p id="delivery" class="font-semibold">₹0.00</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="flex justify-between mt-1">
+                            <p class="text-[19px] font-medium">Total</p>
+                            <p id="total" class="font-semibold">₹0.00</p>
+                        </div>
+
+                        <a id="checkout-btn" class="hidden w-full" href="/checkout">
+                            <button class="w-full bg-gray-950 text-white py-2.5 rounded-md mt-2">
+                                Checkout
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <script src="/javascripts/cart.js"></script>
+        <%- include('partials/footer') %>
+</body>
+
+</html>
