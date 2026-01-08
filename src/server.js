@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config();
+
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
@@ -15,22 +16,27 @@ const ejsRoutes = require('./routes/ejsRoutes');
 const connectDB = require('./.config/mongodb.config');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
+
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
+
 app.use(morgan('dev'));
 app.use(cookieParser());
+
 app.use(
   session({
-    secret: 'yourSecret',
+    secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
   })
 );
+
 app.use(flash());
 
 // Routes
@@ -38,21 +44,10 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/user', userRoutes);
 app.use('/', ejsRoutes);
 
-// Database connection function
-const startServer = async () => {
+// Start server
+(async () => {
   await connectDB();
-  // Only start listening if NOT running as serverless (Vercel)
-  if (!process.env.VERCEL) {
-    const port = process.env.PORT || 3000;
-    app.listen(port, () => {
-      console.log(`Server running on http://localhost:${port}`);
-    });
-  }
-};
-
-// Run the server if this file is executed directly
-if (require.main === module) {
-  startServer();
-}
-
-module.exports = app;
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+  });
+})();
