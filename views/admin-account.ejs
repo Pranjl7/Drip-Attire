@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drip Attire</title>
+    <link rel="stylesheet" href="/stylesheets/output.css">
+</head>
+
+<body class="min-h-screen font-geist flex flex-col">
+    <%- include("partials/admin-header") %>
+
+        <main class="flex-grow">
+            <div class="ml-7 mt-7">
+                <div class="font-semibold text-[20px]">Hey, <%=admin.name%>
+                </div>
+                <p class="mt-1 text-[14px] font-semibold mb-5"> ADMIN'S EMAIL ID -
+                    <%=admin.emailid%>
+                </p>
+                <a class="font-semibold px-4 py-2 text-white bg-blue-600 rounded-md" href="/admin/create">CREATE
+                    PRODUCT</a>
+            </div>
+
+            <div class="max-w-[85vw] mx-auto min-h-[80vh] mt-14 mb-10 indent-0">
+                <!-- BEFORE SM -->
+                <div class="sm:hidden flex justify-between items-center w-full mb-2">
+                    <p class="font-semibold text-[18px] text-center underline">ADMIN'S COLLECTION
+                    </p>
+                    <button onclick="deleteall()"
+                        class="text-[16px] font-semibold text-white mr-1 bg-red-600 px-3 py-1 rounded-md">Delete
+                        all</button>
+                </div>
+                <!-- AFTER SM -->
+                <div class="hidden sm:flex justify-between w-full mb-4">
+                    <p class="font-semibold text-[19px] text-center underline">ADMIN CREATED COLLECTION
+                    </p>
+                    <button onclick="deleteall()"
+                        class="text-[16px] font-semibold text-white mr-2 bg-red-600 px-3 py-1 rounded-md whitespace-nowrap">Delete
+                        all</button>
+                </div>
+                <div class="w-full h-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-x-4 gap-y-5 text-sm">
+
+                    <!--Admin Created Products -->
+                    <%admin.createdproducts.forEach((e)=> {%>
+                        <div class="box-border relative">
+                            <img class="w-full aspect-[4/4] bg-cover bg-center mb-0.5" src=<%=e.image%> alt="">
+                            <p class="w-full overflow-hidden px-1 py-0.5">
+                                <%=e.description%>
+                            </p>
+                            <p class="w-full pl-1 pb-0.5 font-semibold">Rs. <%=e.price%>.00/-</p>
+                            <button class="absolute bottom-3 right-2 border-none bg-transparent"
+                                onclick="deleteproduct('<%= e._id %>', '<%= e.description %>')"><img class="h-6 w-6"
+                                    src="/assets/delete.svg" alt=""></button>
+                        </div>
+                        <%})%>
+
+                </div>
+            </div>
+            </div>
+        </main>
+
+        <script src="/javascripts/admin-account.js"></script>
+        <%- include('partials/footer') %>
+</body>
+
+</html>
