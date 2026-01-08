@@ -33,46 +33,6 @@ A modern streetwear eCommerce web application featuring trendy apparel, bold des
 - **Morgan** - HTTP request logger
 - **Concurrently** - Run multiple scripts simultaneously
 
-## Project Structure
-
-```
-drip-attire/
-├── src/
-│   ├── controllers/      # Business logic handlers
-│   │   ├── adminController.js
-│   │   └── userController.js
-│   ├── middlewares/      # Authentication & file upload
-│   │   ├── adminAuth.js
-│   │   ├── userAuth.js
-│   │   └── multerLogic.js
-│   ├── models/           # MongoDB schemas
-│   │   ├── adminModel.js
-│   │   ├── productModel.js
-│   │   └── userModel.js
-│   ├── routes/           # Route definitions
-│   │   ├── adminRoutes.js
-│   │   ├── ejsRoutes.js
-│   │   └── userRoutes.js
-│   ├── styles/           # Tailwind CSS source
-│   │   └── input.css
-│   ├── utils/            # Utility functions
-│   │   └── zodValidation.js
-│   ├── .config/          # Configuration files
-│   │   └── mongodb.config.js
-│   └── server.js         # Application entry point
-├── public/               # Static assets
-│   ├── assets/           # Images, icons, uploads
-│   ├── javascripts/      # Client-side scripts
-│   ├── stylesheets/      # Compiled CSS
-│   └── favicon.ico
-├── views/                # EJS templates
-│   ├── partials/         # Reusable components
-│   └── *.ejs             # Page templates
-├── tailwind.config.js    # Tailwind configuration
-├── package.json
-└── README.md
-```
-
 ## Installation & Setup
 
 ### Prerequisites
