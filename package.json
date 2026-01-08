@@ -11,8 +11,9 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "tailwindcss -i ./src/input.css -o ./public/css/output.css --watch",
+    "build": "tailwindcss -i ./src/styles/input.css -o ./public/stylesheets/output.css",
+    "start": "npm run build && node src/server.js",
+    "dev": "tailwindcss -i ./src/styles/input.css -o ./public/stylesheets/output.css --watch",
     "conc": "concurrently \"nodemon src/server.js\" \"npm run dev\""
   },
   "dependencies": {
