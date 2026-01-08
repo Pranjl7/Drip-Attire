@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body class="h-screen w-screen flex flex-col font-geist">
+    <%-include('partials/user-header')%>
+
+        <main class="flex justify-center items-center flex-grow">
+            <div class="w-[70vw] sm:w-[50vw] md:w-[40vw] lg:w-[28vw] flex flex-col justify-center items-center">
+
+                <div class="w-full aspect-video overflow-hidden">
+                    <video class="w-full object-cover" autoplay muted loop playsinline poster="/assets/payment.png">
+                        <source src="/assets/payment.mp4" type="video/mp4">
+                        </source>
+                    </video>
+                </div>
+
+                <p class="text-lg font-semibold text-center">Thanks for Choosing Our Store!</p>
+            </div>
+        </main>
+
+        <%-include('partials/footer')%>
+</body>
+
+</html>
