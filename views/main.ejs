@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drip Attire</title>
+    <link rel="stylesheet" href="/stylesheets/output.css">
+</head>
+
+<body class="relative font-geist">
+    <div class="Landing-Page bg-[url('/assets/bg-3.png')] bg-cover bg-center bg- h-screen relative">
+        <div class="bg-black/20 absolute inset-0">
+
+            <nav class="flex justify-between items-center pt-4 w-[95vw] mx-auto">
+
+                <!-- MENU ICON -->
+                <button onclick="showsidebar()" class="ml-1 sm:ml-2 lg:hidden">
+                    <img class="size-5 sm:size-6" src="/assets/WMenu.svg" alt="">
+                </button>
+
+                <!-- SIDEBAR -->
+                <div id="sidebar"
+                    class="hidden h-full w-60 absolute top-0 left-0 bg-white z-10 transition duration-200">
+                    <button onclick="hidesidebar()" class="absolute top-1.5 right-1.5"><img class="size-8"
+                            src="/assets/xmark.svg" alt=""></button>
+                    <div class="flex flex-col gap-y-7 pt-12 pl-4">
+                        <a href="/collection" class="text-xl">COLLECTION</a>
+                        <a href="/collection" class="text-xl">NEW ARRIVALS</a>
+                        <a href="/collection" class="text-xl">TOPWEAR</a>
+                        <a href="/refundpolicy" class="text-xl">REFUND POLICY</a>
+                        <a href="/terms-and-condition" class="text-xl">TERMS & CONDITIONS</a>
+                    </div>
+                </div>
+
+                <!-- LOGO TEXT -->
+                <a class="pl-8 text-3xl font-semibold cursor-pointer text-white lg:hidden" href="/">
+                    <p>DRIP ATTIRE.</p>
+                </a>
+
+                <div
+                    class="hidden lg:flex text-white justify-around items-center text-sm gap-x-5 font-geist cursor-pointer">
+                    <a class=" hover:text-[#c5bcbc] transition duration-150" href="/collection">COLLECTION</a>
+                    <a class=" hover:text-[#c5bcbc] transition duration-150" href="/collection">NEW ARRIVALS</a>
+                    <a class=" hover:text-[#c5bcbc] transition duration-150" href="/collection">TOPWEAR</a>
+                    <a class=" hover:text-[#c5bcbc] transition duration-150" href="/refundpolicy">REFUND POLICY</a>
+                    <a class=" hover:text-[#cfc6c6] transition duration-150" href="/terms-and-conditions">TERMS &
+                        CONDITIONS</a>
+                    <a class="pl-8 text-3xl font-semibold cursor-pointer" href="/">
+                        <p>DRIP ATTIRE.</p>
+                    </a>
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="text-white flex justify-around items-center gap-x-5 mr-1 sm:mr-2">
+                    <a id="profile" href="#"><img class="size-5 sm:size-6" src="/assets/user.svg" alt=""></a>
+                    <a href="/cart"><img class="size-5 sm:size-6" src="/assets/cart.svg" alt=""></a>
+                </div>
+            </nav>
+
+            <a class="font-geist text-white text-[15px] semibold absolute bottom-8 left-1/2 -translate-x-1/2 hover:text-[#969292] transition duration-150"
+                href="/collection">Shop now.</a>
+        </div>
+    </div>
+
+    <script>
+        (async () => {
+            let res = await fetch("/api/user/account")
+            let data = res.json()
+
+            if (res.ok) {
+                document.querySelector("#profile").setAttribute("href", "/user/account")
+                return
+            }
+            else {
+                document.querySelector("#profile").setAttribute("href", "/user/signup")
+            }
+        })()
+
+        function showsidebar() {
+            document.querySelector("#sidebar").classList.remove("hidden")
+        }
+
+        function hidesidebar() {
+            document.querySelector("#sidebar").classList.add("hidden")
+        }
+    </script>
+</body>
+
+</html>
