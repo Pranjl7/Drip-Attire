@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drip Attire</title>
+    <link rel="stylesheet" href="/stylesheets/output.css">
+</head>
+
+<body class="relative font-geist">
+    <nav class="flex justify-between items-center pt-4 w-[95vw] mx-auto">
+
+        <!-- MENU ICON -->
+        <button onclick="showsidebar()" class="ml-2 lg:hidden">
+            <img class="size-5 sm:size-6" src="/assets/DMenu.svg" alt="">
+        </button>
+
+        <!-- SIDEBAR -->
+        <div id="sidebar" class="hidden h-full w-60 absolute top-0 left-0 bg-white z-10 transition duration-200">
+            <button onclick="hidesidebar()" class="absolute top-1.5 right-1.5"><img class="size-8"
+                    src="/assets/xmark.svg" alt=""></button>
+            <div class="flex flex-col gap-y-7 pt-12 pl-4">
+                <a href="/" class="text-xl">HOME</a>
+                <a href="/collection" class="text-xl">COLLECTION</a>
+                <a href="/collection" class="text-xl">NEW ARRIVALS</a>
+                <a href="/refundpolicy" class="text-xl">REFUND POLICY</a>
+                <a href="/terms-and-conditions" class="text-xl">TERMS & CONDITIONS</a>
+            </div>
+        </div>
+
+        <!-- LOGO TEXT -->
+        <a class="pl-8 text-3xl font-semibold cursor-pointer lg:hidden" href="/">
+            <p>DRIP ATTIRE.</p>
+        </a>
+
+        <!-- DESKTOP -->
+        <div class="hidden lg:flex text-black justify-around items-center text-sm gap-x-5 font-geist cursor-pointer">
+            <a class=" hover:text-[#a09b9b] transition duration-150" href="/">HOME</a>
+            <a class=" hover:text-[#a09b9b] transition duration-150" href="/collection">COLLECTION</a>
+            <a class=" hover:text-[#a09b9b] transition duration-150" href="/collection">NEW ARRIVALS</a>
+            <a class=" hover:text-[#a09b9b] transition duration-150" href="/refundpolicy">REFUND POLICY</a>
+            <a class=" hover:text-[#a09b9b] transition duration-150" href="/terms-and-conditions">TERMS & CONDITIONS</a>
+
+            <!-- LOGO TEXT -->
+            <a class="pl-8 text-3xl font-semibold cursor-pointer" href="/">
+                <p>DRIP ATTIRE.</p>
+            </a>
+        </div>
+
+        <div class="text-white flex justify-around items-center gap-x-4 sm:gap-x-5 mr-1 sm:mr-2">
+            <a id="profile" href="#"><img class="size-5 sm:size-6" src="/assets/blackuser.svg" alt=""></a>
+            <a href="/cart"><img class="size-5 sm:size-6" src="/assets/blackcart.svg" alt=""></a>
+        </div>
+    </nav>
+
+
+    <script>
+        (async () => {
+            let res = await fetch("/api/user/account")
+            let data = res.json()
+
+            if (res.ok) {
+                document.querySelector("#profile").setAttribute("href", "/user/account")
+                return
+            }
+            else {
+                document.querySelector("#profile").setAttribute("href", "/user/signup")
+            }
+        })()
+
+        function showsidebar() {
+            document.querySelector("#sidebar").classList.remove("hidden")
+        }
+
+        function hidesidebar() {
+            document.querySelector("#sidebar").classList.add("hidden")
+        }
+    </script>
+</body>
+
+</html>
