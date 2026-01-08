@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drip Attire</title>
+    <link rel="stylesheet" href="/stylesheets/output.css">
+</head>
+
+<body class="bg-Authform-bgwhite h-screen flex justify-center items-center">
+
+    <form id="userSigninForm"
+        class="max-h-[50%] w-[80%] sm:w-[50%] md:w-[40%] lg:w-[27%] border bg-white rounded-lg flex items-center flex-col gap-y-1 font-geist">
+        <p class="font-bold text-center mt-4 mb-1">Welcome to,&nbsp;&nbsp;<a class="text-2xl font-bold underline"
+                href="/">DRIP ATTIRE.</a></p>
+
+        <label class="mt-1 w-full indent-6" for="signup-email">Email</label>
+        <input
+            class="border rounded-md h-[35px] w-[90%] outline-none focus:ring-1 focus:ring-black/40 focus:border-black transition duration-200 px-2"
+            type="email" name="emailid" id="signup-email" placeholder="Email">
+
+        <label class="mt-1 w-full indent-6" for="signup-password">Password</label>
+        <input
+            class="border rounded-md h-[35px] w-[90%] outline-none focus:ring-1 focus:ring-black/40 focus:border-black transition duration-200 px-2"
+            type="password" name="password" id="signup-password" placeholder="Password">
+
+        <button class="h-[50px] w-[90%] border rounded-full font-bold mt-3 mb-2 bg-Authform-button text-white"
+            type="submit">Signin</button>
+
+        <p class="text-[15px]">Are you an Admin?&nbsp;<a class="underline text-red-800"
+                href="/admin/signin">Admin-Signin</a></p>
+        <p class="text-[15px] mb-3">Don't have an account?&nbsp;<a class="underline text-red-800"
+                href="/user/signup">Signup</a></p>
+    </form>
+
+        <script src="/javascripts/user-signin.js"></script>
+</body>
+
+</html>
