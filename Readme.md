@@ -1,6 +1,6 @@
 # Drip Attire
 
-A modern streetwear eCommerce web application featuring trendy apparel, bold designs, and effortless style — built for the new generation of fashion. This full-stack application provides a seamless shopping experience with user authentication, cart management, and an admin panel for product management.
+A modern fashion e-commerce application featuring a clean/responsive UI and scalable backend architecture.This full-stack application provides a seamless shopping experience with user authentication, cart management, and an admin panel for product management.
 
 ## Features
 
