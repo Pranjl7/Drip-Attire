@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="/stylesheets/output.css">
 </head>
 
-<body class="font-geist relative" style="overflow-x: hidden;">
+<body class="min-h-screen flex flex-col font-geist relative" style="overflow-x: hidden;">
     <%- include('partials/user-header') %>
-        <%- include('partials/alertbox')%>
 
+        <div class="flex-grow">
             <div class="w-full p-2 text-[12px] font-semibold mb-4 overflow-hidden mt-10">
                 <div class="flex whitespace-nowrap animate-scroll-left hover:[animation-play-state:paused]">
                     <span class="inline-block">FASHION THAT FEELS GOOD, LOOKS BETTER, AND LASTS LONGER.
@@ -29,22 +29,26 @@
                         TIMELESS.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </div>
             </div>
-            <div class="max-w-[85vw] mx-auto grid 
-         grid-cols-[repeat(auto-fit,minmax(280px,1fr))]
-         gap-x-4 gap-y-5 mb-5 font-geist text-sm p-2">
+            <div class="max-w-[85vw] mx-auto grid
+                            grid-cols-[repeat(auto-fit,minmax(280px,1fr))]
+                            gap-x-4 gap-y-5 mb-5 font-geist text-sm p-2
+                            justify-items-start">
 
                 <% products.forEach((e)=> { %>
 
-                    <div class="relative flex flex-col hover:shadow-lg transition">
+                    <div class="relative flex flex-col hover:shadow-lg transition
+                w-full max-w-[320px] bg-white">
 
-                        <img class="w-full aspect-[4/4] object-cover object-center" src="<%= e.image %>" alt="" />
+                        <img class="w-full aspect-square object-cover object-center" src="<%= e.image %>" alt="" />
 
                         <div class="flex flex-col gap-1 p-2 flex-grow">
                             <p class="line-clamp-2 text-gray-800">
                                 <%= e.description %>
                             </p>
 
-                            <p class="font-semibold">Rs. <%= e.price %>/-</p>
+                            <p class="font-semibold">
+                                Rs. <%= e.price %>/-
+                            </p>
                         </div>
 
                         <button onclick="addtocart('<%=e._id%>')"
@@ -57,10 +61,10 @@
                     <% }) %>
 
             </div>
+        </div>
 
-
-            <script src="/javascripts/collection.js"></script>
-            <%- include('partials/footer') %>
+        <script src="/javascripts/collection.js"></script>
+        <%- include('partials/footer') %>
 
 </body>
 

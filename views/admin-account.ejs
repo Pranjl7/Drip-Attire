@@ -40,11 +40,11 @@
                         class="text-[16px] font-semibold text-white mr-2 bg-red-600 px-3 py-1 rounded-md whitespace-nowrap">Delete
                         all</button>
                 </div>
-                <div class="w-full h-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-x-4 gap-y-5 text-sm">
+                <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-x-4 gap-y-5 text-sm">
 
                     <!--Admin Created Products -->
                     <%admin.createdproducts.forEach((e)=> {%>
-                        <div class="box-border relative">
+                        <div class="box-border relative max-w-[320px] w-full">
                             <img class="w-full aspect-[4/4] bg-cover bg-center mb-0.5" src=<%=e.image%> alt="">
                             <p class="w-full overflow-hidden px-1 py-0.5">
                                 <%=e.description%>
