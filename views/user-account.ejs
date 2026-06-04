@@ -11,8 +11,15 @@
   <body class="flex min-h-screen flex-col font-geist">
     <%-include('partials/user-header')%>
     <div class="flex-grow">
+      <!-- Main Loader -->
+      <div id="main-loader" class="flex items-center justify-center min-h-[300px]">
+        <div class="drip-spinner"></div>
+      </div>
+
+      <!-- Account Card -->
       <div
-        class="relative ml-6 mt-10 flex w-[21rem] flex-col gap-y-5 overflow-auto rounded-md border p-5 shadow sm:ml-8 sm:w-96"
+        id="account-card"
+        class="relative ml-6 mt-10 hidden w-[21rem] flex-col gap-y-5 overflow-auto rounded-md border p-5 shadow sm:ml-8 sm:w-96"
       >
         <button
           onclick="logout()"
@@ -24,24 +31,22 @@
           <div class="relative size-24 shrink-0 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
             <img
               id="image"
-              class="absolute inset-0 h-full w-full object-cover hidden"
+              class="absolute inset-0 h-full w-full object-cover"
               alt=""
-              onload="this.classList.remove('hidden')"
             />
-            <div class="drip-spinner-sm-theme"></div>
           </div>
           <p
             id="name"
             class="rounded-md border px-2 py-1 text-xl font-medium min-w-[120px] flex items-center justify-center min-h-[38px]"
-          ><span class="drip-spinner-sm-theme"></span></p>
+          ></p>
         </div>
 
         <div class="flex flex-col gap-y-2">
           <p class="text-md font-medium flex items-center gap-x-2">
-            Emailid : <span id="email" class="text-slate-500"><span class="drip-spinner-sm-theme" style="width: 14px; height: 14px; border-width: 1.5px;"></span></span>
+            Emailid : <span id="email" class="text-slate-500"></span>
           </p>
           <p class="text-md font-medium flex items-center gap-x-2">
-            Contact no : <span id="contactno" class="text-slate-500"><span class="drip-spinner-sm-theme" style="width: 14px; height: 14px; border-width: 1.5px;"></span></span>
+            Contact no : <span id="contactno" class="text-slate-500"></span>
           </p>
         </div>
       </div>
@@ -51,19 +56,45 @@
 
   <script>
     (async () => {
-      res = await fetch("/api/user/account");
+      let res = await fetch("/api/user/account");
       let data = await res.json();
 
       if (res.ok) {
         let user = data.message;
         document.querySelector("#name").textContent = `Hey, ${user.name}`;
-        document.querySelector("#image").setAttribute("src", user.image);
         document.querySelector("#email").textContent = `${user.emailid}`;
         document.querySelector("#contactno").textContent = `${user.contactno}`;
+        
+        let img = document.querySelector("#image");
+        if (user.image) {
+          img.onload = () => {
+            showAccountDetails();
+          };
+          img.onerror = () => {
+            showAccountDetails();
+          };
+          img.src = user.image;
+          if (img.complete) {
+            showAccountDetails();
+          }
+        } else {
+          showAccountDetails();
+        }
       } else {
         alert(data.message);
+        document.querySelector("#main-loader").style.display = "none";
       }
     })();
+
+    function showAccountDetails() {
+      const loader = document.querySelector("#main-loader");
+      const card = document.querySelector("#account-card");
+      if (loader && loader.style.display !== "none") {
+        loader.style.display = "none";
+        card.classList.remove("hidden");
+        card.classList.add("flex");
+      }
+    }
 
     async function logout() {
       let confirmed = confirm("Confirm Logout?");
