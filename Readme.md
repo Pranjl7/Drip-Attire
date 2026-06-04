@@ -1,7 +1,7 @@
-![Drip Attire Screenshot 1](\public\assets\uploads\drip-attire.onrender.com_collection.png)
-![Drip Attire Screenshot 2](\public\assets\uploads\drip-attire.onrender.com_collectionp.png)
-![Drip Attire Screenshot 3](\public\assets\uploads\drip-attire.onrender.com_user_signupp.png)
-![Drip Attire Screenshot 4](\public\assets\uploads\drip-attire.onrender.com_cart.png)
+![Drip Attire Screenshot 1](/public/assets/uploads/drip-attire.onrender.com_collection.png)
+![Drip Attire Screenshot 2](/public/assets/uploads/drip-attire.onrender.com_collectionp.png)
+![Drip Attire Screenshot 3](/public/assets/uploads/drip-attire.onrender.com_user_signupp.png)
+![Drip Attire Screenshot 4](/public/assets/uploads/drip-attire.onrender.com_cart.png)
 
 # Drip Attire
 
