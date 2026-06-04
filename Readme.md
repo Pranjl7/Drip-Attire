@@ -1,3 +1,8 @@
+![Drip Attire Screenshot 1](public\assets\uploads\drip-attire.onrender.com_collection.png)
+![Drip Attire Screenshot 2](public\assets\uploads\drip-attire.onrender.com_collectionp.png)
+![Drip Attire Screenshot 3](public\assets\uploads\drip-attire.onrender.com_user_signupp.png)
+![Drip Attire Screenshot 4](public\assets\uploads\drip-attire.onrender.com_cart.png)
+
 # Drip Attire
 
 A modern fashion e-commerce application featuring a clean/responsive UI and scalable backend architecture.This full-stack application provides a seamless shopping experience with user authentication, cart management, and an admin panel for product management.
@@ -15,6 +20,7 @@ A modern fashion e-commerce application featuring a clean/responsive UI and scal
 ## Tech Stack
 
 ### Backend
+
 - **Node.js** - Runtime environment
 - **Express.js** - Web framework
 - **MongoDB** - Database with Mongoose ODM
@@ -24,11 +30,13 @@ A modern fashion e-commerce application featuring a clean/responsive UI and scal
 - **Zod** - Schema validation
 
 ### Frontend
+
 - **EJS** - Server-side templating engine
 - **Tailwind CSS** - Utility-first CSS framework
 - **Vanilla JavaScript** - Client-side interactivity
 
 ### Development Tools
+
 - **Nodemon** - Auto-restart during development
 - **Morgan** - HTTP request logger
 - **Concurrently** - Run multiple scripts simultaneously
@@ -84,19 +92,22 @@ drip-attire/
 ### Steps
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd drip-attire
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Configure environment variables**
-   
+
    Create a `.env` file in the root directory:
+
    ```env
    PORT=3000
    MONGO_URL=your_mongodb_connection_string
@@ -106,16 +117,19 @@ drip-attire/
    ```
 
 4. **Build Tailwind CSS**
+
    ```bash
    npm run build
    ```
 
 5. **Start the server**
+
    ```bash
    npm start
    ```
 
    For development with auto-reload:
+
    ```bash
    npm run conc
    ```
@@ -126,6 +140,7 @@ drip-attire/
 ## API Endpoints
 
 ### User Routes (`/api/user`)
+
 - `POST /signup` - User registration
 - `POST /signin` - User login
 - `GET /account` - Get user account (protected)
@@ -137,6 +152,7 @@ drip-attire/
 - `DELETE /logout` - User logout (protected)
 
 ### Admin Routes (`/api/admin`)
+
 - `POST /signup` - Admin registration
 - `POST /signin` - Admin login
 - `GET /account` - Get admin account (protected)
@@ -146,6 +162,7 @@ drip-attire/
 - `DELETE /logout` - Admin logout (protected)
 
 ### Page Routes (`/`)
+
 - `GET /` - Homepage
 - `GET /collection` - Product collection page
 - `GET /cart` - Shopping cart page
@@ -179,7 +196,9 @@ The application is configured for Railway deployment:
 4. **MongoDB**: Use MongoDB Atlas or Railway's MongoDB service
 
 ## Contributing
-  Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
 
 ## License
+
 Distributed under the MIT License.
