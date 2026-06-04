@@ -15,12 +15,14 @@
       class="mx-auto my-[7vh] flex min-h-[50vh] w-[80%] flex-grow flex-col-reverse justify-between gap-x-4 gap-y-4 sm:w-[70%] md:w-[60%] lg:w-[70%] lg:flex-row"
     >
       <!-- CART SECTION -->
-      <div class="flex w-full flex-col rounded-md border lg:min-w-[65%]">
-        <div class="mb-5 mt-4 flex items-center justify-between">
-          <h1 class="indent-4 text-[25px] font-semibold">Cart</h1>
+      <div class="flex w-full min-w-0 flex-col rounded-md border lg:min-w-[65%]">
+        <div class="mb-5 mt-4 flex items-center justify-between px-2 sm:px-0">
+          <h1 class="indent-2 text-xl font-semibold sm:indent-4 sm:text-[25px]">
+            Cart
+          </h1>
           <button
             id="clearcart"
-            class="mr-4 hidden rounded-md bg-gray-950 px-5 py-1.5 text-white"
+            class="mr-2 hidden rounded-md bg-gray-950 px-3 py-1.5 text-sm text-white sm:mr-4 sm:px-5 sm:text-base"
           >
             Clear
           </button>
@@ -29,10 +31,10 @@
         <!-- SIGNIN MESSAGE -->
         <div
           id="msg-box"
-          class="mb-5 mt-10 hidden flex-col items-center justify-center"
+          class="mb-5 mt-10 hidden flex-col items-center justify-center px-4 text-center"
         >
-          <div class="flex items-center gap-x-2">
-            <h1 id="cart-msg" class="text-2xl font-medium"></h1>
+          <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            <h1 id="cart-msg" class="text-xl font-medium sm:text-2xl"></h1>
             <img class="size-10" src="/assets/emptycart.svg" alt="" />
           </div>
           <a href="/user/signin">
@@ -45,10 +47,10 @@
         <!-- EMPTY CART -->
         <div
           id="empty-cart"
-          class="mb-5 mt-10 hidden flex-col items-center justify-center"
+          class="mb-5 mt-10 hidden flex-col items-center justify-center px-4 text-center"
         >
-          <div class="flex items-center gap-x-2">
-            <h1 class="text-2xl font-medium">Cart is Empty!</h1>
+          <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            <h1 class="text-xl font-medium sm:text-2xl">Cart is Empty!</h1>
             <img class="size-10" src="/assets/emptycart.svg" alt="" />
           </div>
           <a href="/collection">
@@ -63,28 +65,32 @@
           <!-- CART ITEM TEMPLATE -->
           <div
             id="cart-item"
-            class="mx-auto mb-6 hidden h-[23vh] w-[95%] justify-between"
+            class="mx-auto mb-6 hidden w-[95%] flex-col gap-3 sm:h-[23vh] sm:flex-row sm:justify-between"
           >
-            <div class="flex gap-x-2.5">
+            <div class="flex min-w-0 flex-1 gap-x-2.5">
               <div
-                class="img-box max-h-[80%] w-[15vh] overflow-hidden rounded-lg sm:max-h-[100%] sm:w-[20vh]"
+                class="img-box h-24 w-24 shrink-0 overflow-hidden rounded-lg sm:h-auto sm:max-h-[100%] sm:w-[20vh]"
               >
                 <img
                   id="cart-image"
-                  class="h-full w-full rounded-lg bg-cover bg-center"
+                  class="h-full w-full rounded-lg bg-cover bg-center object-cover"
                 />
               </div>
 
-              <div class="flex h-full max-w-[25vw] flex-col justify-between">
-                <div class="flex flex-col gap-y-1">
-                  <p id="cart-desc" class="text-[17px] font-semibold"></p>
-                  <p id="cart-name" class="hidden text-[16px] sm:block"></p>
-                  <p id="cart-size" class="hidden text-[16px] sm:block">
-                    Size : S
-                  </p>
+              <div class="flex min-w-0 flex-1 flex-col justify-between">
+                <div class="flex flex-col gap-y-0.5 sm:gap-y-1">
+                  <p
+                    id="cart-desc"
+                    class="line-clamp-2 text-base font-semibold sm:text-[17px]"
+                  ></p>
+                  <p
+                    id="cart-name"
+                    class="truncate text-sm text-gray-700 sm:text-[16px]"
+                  ></p>
+                  <p id="cart-size" class="text-sm sm:text-[16px]">Size : S</p>
                 </div>
 
-                <div class="flex gap-x-5">
+                <div class="mt-2 flex gap-x-5 sm:mt-0">
                   <button class="heart-btn">
                     <img
                       class="hidden size-[22px] sm:block"
@@ -100,10 +106,12 @@
               </div>
             </div>
 
-            <div class="flex max-w-[15%] flex-col gap-y-2.5">
+            <div
+              class="flex w-full shrink-0 flex-row items-center justify-between border-t border-gray-100 pt-3 sm:max-w-[15%] sm:flex-col sm:items-end sm:justify-start sm:gap-y-2.5 sm:border-t-0 sm:pt-0"
+            >
               <p id="cart-price" class="font-semibold"></p>
 
-              <div class="flex items-center justify-end gap-x-3">
+              <div class="flex items-center gap-x-3 sm:justify-end">
                 <button class="minus-btn">
                   <img class="h-4 w-4" src="/assets/minus.svg" alt="" />
                 </button>
