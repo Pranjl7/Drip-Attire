@@ -13,7 +13,6 @@ const {
 
 async function usersignup(req, res) {
   try {
-    const result = await cloudinary.uploader.upload(req.file.path);
 
     let name = req.body.name;
     let emailid = req.body.emailid;
@@ -25,8 +24,8 @@ async function usersignup(req, res) {
       image = "/assets/user-placeholder.png";
       imageid = "null";
     } else {
-      image = result.secure_url;
-      imageid = result.public_id;
+      image = req.file.path;
+      imageid = req.file.filename;
     }
     let check = usersignupSchema.safeParse(req.body);
     if (check.success) {

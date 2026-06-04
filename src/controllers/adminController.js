@@ -118,7 +118,6 @@ async function adminaccount(req, res) {
 
 async function admincreate(req, res) {
   try {
-    const result = await cloudinary.uploader.upload(req.file.path);
     let emailid = req.adminid;
     let admin = await Admin.findOne({
       emailid,
@@ -126,8 +125,8 @@ async function admincreate(req, res) {
     let name = req.body.name;
     let description = req.body.description;
     let price = req.body.price;
-    let image = result.secure_url;
-    let imageid = result.public_id;
+    let image = req.file.path;
+    let imageid = req.file.filename;
     let seller = admin._id.toString();
 
     let product = await Product.create({
