@@ -3,6 +3,7 @@ const Product = require("../models/productModel");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.USER_JWT_SECRET;
 const bcrypt = require("bcrypt");
+const cloudinary = require("../.config/cloudinary.config")
 
 // zod validation
 const {
@@ -12,6 +13,8 @@ const {
 
 async function usersignup(req, res) {
   try {
+    const result = await cloudinary.uploader.upload(req.file.path);
+
     let name = req.body.name;
     let emailid = req.body.emailid;
     let password = await bcrypt.hash(req.body.password, 10);
@@ -22,8 +25,8 @@ async function usersignup(req, res) {
       image = "/assets/user-placeholder.png";
       imageid = "null";
     } else {
-      image = req.file.path;
-      imageid = req.file.filename;
+      image = result.secure_url;
+      imageid = result.public_id;
     }
     let check = usersignupSchema.safeParse(req.body);
     if (check.success) {
