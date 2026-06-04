@@ -22,7 +22,17 @@ router.post("/signin", adminsignin);
 
 router.get("/account", adminAuth, adminaccount);
 
-router.post("/create", adminAuth, upload.single("image"), admincreate);
+router.post("/create", adminAuth, (req, res, next) => {
+  upload.single("image")(req, res, (err) => {
+    if (err) {
+      return res.status(400).json({
+        success: false,
+        message: err.message || "Image upload failed. Use JPG, PNG, or WEBP.",
+      });
+    }
+    next();
+  });
+}, admincreate);
 
 router.delete("/delete", adminAuth, admindelete);
 

@@ -20,18 +20,26 @@ document
         const res = await fetch("/api/admin/create", {
           method: "POST",
           body: formData,
+          credentials: "same-origin",
         });
+
+        const contentType = res.headers.get("content-type") || "";
+        if (!contentType.includes("application/json")) {
+          console.error(await res.text());
+          alert("Server error. Try again.");
+          return;
+        }
 
         const data = await res.json();
 
-        if (res.ok) {
+        if (res.ok && data.success) {
           alert(data.message);
           window.location.href = "/admin/account";
         } else {
-          alert(data.message);
+          alert(data.message || "Something went wrong. Please try again.");
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
         alert("Server error. Try again.");
       }
     }

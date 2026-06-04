@@ -118,16 +118,36 @@ async function adminaccount(req, res) {
 
 async function admincreate(req, res) {
   try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Image upload failed. Please try again.",
+      });
+    }
+
     let emailid = req.adminid;
-    let admin = await Admin.findOne({
-      emailid,
-    });
+    let admin = await Admin.findOne({ emailid });
+
+    if (!admin) {
+      return res.status(404).json({
+        success: false,
+        message: "Admin not found. Please sign in again.",
+      });
+    }
+
     let name = req.body.name;
     let description = req.body.description;
-    let price = req.body.price;
+    let price = Number(req.body.price);
+
+    if (!name || !description || !Number.isFinite(price)) {
+      return res.status(400).json({
+        success: false,
+        message: "Please fill all required fields.",
+      });
+    }
+
     let image = req.file.path;
     let imageid = req.file.filename;
-    let seller = admin._id.toString();
 
     let product = await Product.create({
       name,
@@ -135,16 +155,12 @@ async function admincreate(req, res) {
       price,
       image,
       imageid,
-      seller,
+      seller: admin._id,
     });
 
     await Admin.updateOne(
-      { _id: admin._id.toString() },
-      {
-        $push: {
-          createdproducts: product._id.toString(),
-        },
-      },
+      { _id: admin._id },
+      { $push: { createdproducts: product._id } },
     );
 
     res.status(200).json({
@@ -152,6 +168,7 @@ async function admincreate(req, res) {
       message: `${description} Added to Collection.`,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
       message: "Something went wrong. Please try again.",

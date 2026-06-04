@@ -5,7 +5,14 @@ const JWT_SECRET = process.env.ADMIN_JWT_SECRET;
 function adminAuth(req, res, next) {
   try {
     let token = req.cookies.token;
+    const isApiRequest = req.originalUrl.startsWith("/api/");
     if (!token) {
+      if (isApiRequest) {
+        return res.status(401).json({
+          success: false,
+          message: "Signin required.",
+        });
+      }
       res.redirect("/admin/signin");
       return;
     }
