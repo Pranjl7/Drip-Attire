@@ -1,5 +1,6 @@
 ![Drip Attire Screenshot 1](/public/assets/uploads/drip-attire.onrender.com_collection.png)
 ![Drip Attire Screenshot 4](/public/assets/uploads/drip-attire.onrender.com_cart.png)
+
 <p align="center">
   <img src="public\assets\uploads\drip-attire.onrender.com_collectionp.png" width="45%">
   <img src="public\assets\uploads\drip-attire.onrender.com_user_signupp.png" width="45%">
@@ -8,6 +9,8 @@
 # Drip Attire
 
 A modern fashion e-commerce application featuring a clean/responsive UI and scalable backend architecture.This full-stack application provides a seamless shopping experience with user authentication, cart management, and an admin panel for product management.
+
+- Live: https://drip-attire.onrender.com
 
 ## Features
 
@@ -135,9 +138,6 @@ drip-attire/
    ```bash
    npm run conc
    ```
-
-6. **Access the application**
-   - Open `http://localhost:3000` in your browser
 
 ## API Endpoints
 
