@@ -1,4 +1,9 @@
-async function addtocart(id) {
+async function addtocart(id, btn) {
+  if (!btn) return;
+  const originalContent = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<div class="drip-spinner-sm-theme"></div>';
+
   try {
     let res = await fetch("/api/user/cart/add", {
       method: "POST",
@@ -14,5 +19,8 @@ async function addtocart(id) {
     }
   } catch (error) {
     alert("Something went wrong. Please try again.");
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalContent;
   }
 }

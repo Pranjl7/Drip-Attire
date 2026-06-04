@@ -13,6 +13,11 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     return;
   }
 
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const originalText = submitBtn.innerHTML;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="drip-spinner-sm"></span>';
+
   try {
     const res = await fetch("/api/user/signup", {
       method: "POST",
@@ -27,9 +32,13 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       window.location.href = "/";
     } else {
       alert(data.message);
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
     }
   } catch (error) {
     console.error(error);
     alert("Server error. Please try again.");
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
   }
 });

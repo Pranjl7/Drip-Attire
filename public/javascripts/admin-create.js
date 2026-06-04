@@ -15,6 +15,10 @@ document
     } else {
       const form = e.target;
       const formData = new FormData(form);
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="drip-spinner-sm"></span>';
 
       try {
         const res = await fetch("/api/admin/create", {
@@ -27,6 +31,8 @@ document
         if (!contentType.includes("application/json")) {
           console.error(await res.text());
           alert("Server error. Try again.");
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
           return;
         }
 
@@ -37,10 +43,14 @@ document
           window.location.href = "/admin/account";
         } else {
           alert(data.message || "Something went wrong. Please try again.");
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
         }
       } catch (error) {
         console.error(error);
         alert("Server error. Try again.");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
       }
     }
   });

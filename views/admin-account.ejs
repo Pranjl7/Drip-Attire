@@ -28,16 +28,16 @@
                 <div class="sm:hidden flex justify-between items-center w-full mb-2">
                     <p class="font-semibold text-[18px] text-center underline">ADMIN'S COLLECTION
                     </p>
-                    <button onclick="deleteall()"
-                        class="text-[16px] font-semibold text-white mr-1 bg-red-600 px-3 py-1 rounded-md">Delete
+                    <button onclick="deleteall(this)"
+                        class="text-[16px] font-semibold text-white mr-1 bg-red-600 px-3 py-1 rounded-md flex items-center justify-center min-w-[70px] min-h-[32px]">Delete
                         all</button>
                 </div>
                 <!-- AFTER SM -->
                 <div class="hidden sm:flex justify-between w-full mb-4">
                     <p class="font-semibold text-[19px] text-center underline">ADMIN CREATED COLLECTION
                     </p>
-                    <button onclick="deleteall()"
-                        class="text-[16px] font-semibold text-white mr-2 bg-red-600 px-3 py-1 rounded-md whitespace-nowrap">Delete
+                    <button onclick="deleteall(this)"
+                        class="text-[16px] font-semibold text-white mr-2 bg-red-600 px-3 py-1 rounded-md whitespace-nowrap flex items-center justify-center min-w-[90px] min-h-[32px]">Delete
                         all</button>
                 </div>
                 <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-x-4 gap-y-5 text-sm">
@@ -50,8 +50,8 @@
                                 <%=e.description%>
                             </p>
                             <p class="w-full pl-1 pb-0.5 font-semibold">Rs. <%=e.price%>.00/-</p>
-                            <button class="absolute bottom-3 right-2 border-none bg-transparent"
-                                onclick="deleteproduct('<%= e._id %>', '<%= e.description %>')"><img class="h-6 w-6"
+                            <button class="absolute bottom-3 right-2 border-none bg-transparent flex items-center justify-center min-w-[24px] min-h-[24px]"
+                                onclick="deleteproduct('<%= e._id %>', '<%= e.description %>', this)"><img class="h-6 w-6"
                                     src="/assets/delete.svg" alt=""></button>
                         </div>
                         <%})%>

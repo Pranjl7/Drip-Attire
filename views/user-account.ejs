@@ -21,23 +21,27 @@
           Logout
         </button>
         <div class="flex items-center gap-x-4">
-          <img
-            id="image"
-            class="size-24 overflow-hidden rounded-full bg-cover bg-center"
-            alt=""
-          />
+          <div class="relative size-24 shrink-0 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
+            <img
+              id="image"
+              class="absolute inset-0 h-full w-full object-cover hidden"
+              alt=""
+              onload="this.classList.remove('hidden')"
+            />
+            <div class="drip-spinner-sm-theme"></div>
+          </div>
           <p
             id="name"
-            class="rounded-md border px-2 py-1 text-xl font-medium"
-          ></p>
+            class="rounded-md border px-2 py-1 text-xl font-medium min-w-[120px] flex items-center justify-center min-h-[38px]"
+          ><span class="drip-spinner-sm-theme"></span></p>
         </div>
 
         <div class="flex flex-col gap-y-2">
-          <p class="text-md font-medium">
-            Emailid : <span id="email" class="text-slate-500"></span>
+          <p class="text-md font-medium flex items-center gap-x-2">
+            Emailid : <span id="email" class="text-slate-500"><span class="drip-spinner-sm-theme" style="width: 14px; height: 14px; border-width: 1.5px;"></span></span>
           </p>
-          <p class="text-md font-medium">
-            Contact no : <span id="contactno" class="text-slate-500"></span>
+          <p class="text-md font-medium flex items-center gap-x-2">
+            Contact no : <span id="contactno" class="text-slate-500"><span class="drip-spinner-sm-theme" style="width: 14px; height: 14px; border-width: 1.5px;"></span></span>
           </p>
         </div>
       </div>

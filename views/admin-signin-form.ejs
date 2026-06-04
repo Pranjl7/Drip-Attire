@@ -9,6 +9,45 @@
   </head>
 
   <body class="flex h-screen items-center justify-center bg-Authform-bgwhite">
+    <!-- Global Preloader -->
+    <div class="fixed inset-0 z-[9999] flex items-center justify-center bg-white/75 backdrop-blur-md transition-all duration-300" id="global-preloader">
+      <div class="h-8 w-8 animate-spin rounded-full border-[2.5px] border-solid border-[#5533ea]/10 border-t-[#5533ea] border-r-[#5533ea]"></div>
+    </div>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          const loader = document.getElementById('global-preloader');
+          if (loader) {
+            loader.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+              loader.classList.add('hidden');
+            }, 300);
+          }
+        }, 150);
+      });
+
+      // Show loader on page transition (when clicking same-origin links)
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link && link.href && !link.target && !link.hasAttribute('download')) {
+          try {
+            const url = new URL(link.href);
+            if (url.origin === window.location.origin && 
+                url.pathname !== window.location.pathname && 
+                !link.href.startsWith('javascript:') && 
+                !link.href.includes('#')) {
+              const loader = document.getElementById('global-preloader');
+              if (loader) {
+                loader.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+              }
+            }
+          } catch (err) {
+            // Ignore invalid URLs
+          }
+        }
+      });
+    </script>
+
     <form
       id="adminSigninForm"
       class="flex max-h-[50%] w-[80%] flex-col items-center gap-y-1 rounded-lg border bg-white font-geist shadow sm:w-[50%] md:w-[40%] lg:w-[27%]"

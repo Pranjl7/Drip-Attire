@@ -11,6 +11,11 @@ document
       return;
     }
 
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="drip-spinner-sm"></span>';
+
     try {
       const res = await fetch("/api/user/signin", {
         method: "POST",
@@ -27,9 +32,13 @@ document
         window.location.href = "/";
       } else {
         alert(data.message);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
       }
     } catch (err) {
       console.error(err);
       alert("Server error. Please try again.");
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
     }
   });

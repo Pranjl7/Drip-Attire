@@ -3,3 +3,66 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Loader Styles */
+.global-loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.global-loader-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.drip-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2.5px solid rgba(85, 51, 234, 0.1);
+  border-top-color: #5533ea;
+  border-right-color: #5533ea;
+  border-radius: 50%;
+  animation: drip-spin 0.75s cubic-bezier(0.5, 0.15, 0.25, 1) infinite;
+}
+
+.drip-spinner-sm {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #ffffff;
+  border-right-color: #ffffff;
+  border-radius: 50%;
+  animation: drip-spin 0.75s cubic-bezier(0.5, 0.15, 0.25, 1) infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.drip-spinner-sm-theme {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(85, 51, 234, 0.1);
+  border-top-color: #5533ea;
+  border-right-color: #5533ea;
+  border-radius: 50%;
+  animation: drip-spin 0.75s cubic-bezier(0.5, 0.15, 0.25, 1) infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes drip-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

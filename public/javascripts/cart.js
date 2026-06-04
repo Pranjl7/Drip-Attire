@@ -79,13 +79,13 @@ async function loadCart() {
 
     node
       .querySelector(".plus-btn")
-      ?.addEventListener("click", () => addbtn(item._id));
+      ?.addEventListener("click", (e) => addbtn(item._id, e.currentTarget));
     node
       .querySelector(".minus-btn")
-      ?.addEventListener("click", () => subbtn(item._id));
+      ?.addEventListener("click", (e) => subbtn(item._id, e.currentTarget));
     node
       .querySelector(".delete-btn")
-      ?.addEventListener("click", () => delproduct(item._id));
+      ?.addEventListener("click", (e) => delproduct(item._id, e.currentTarget));
 
     cartBlock.appendChild(node);
   }
@@ -96,7 +96,12 @@ async function loadCart() {
   document.getElementById("total").innerText = `₹${subtotal + delivery}.00`;
 }
 
-async function subbtn(id) {
+async function subbtn(id, btn) {
+  if (!btn) return;
+  const originalContent = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<div class="drip-spinner-sm-theme" style="width: 14px; height: 14px; border-width: 1.5px;"></div>';
+
   try {
     let res = await fetch(`/api/user/cart/decreement`, {
       method: "DELETE",
@@ -107,15 +112,24 @@ async function subbtn(id) {
     let data = await res.json();
     if (!data.success) {
       alert(data.message);
+      btn.disabled = false;
+      btn.innerHTML = originalContent;
     } else {
       await loadCart();
     }
   } catch (error) {
     alert("Press One At a Time.");
+    btn.disabled = false;
+    btn.innerHTML = originalContent;
   }
 }
 
-async function addbtn(id) {
+async function addbtn(id, btn) {
+  if (!btn) return;
+  const originalContent = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<div class="drip-spinner-sm-theme" style="width: 14px; height: 14px; border-width: 1.5px;"></div>';
+
   try {
     let res = await fetch(`/api/user/cart/add`, {
       method: "POST",
@@ -126,15 +140,24 @@ async function addbtn(id) {
     let data = await res.json();
     if (!data.success) {
       alert(data.message);
+      btn.disabled = false;
+      btn.innerHTML = originalContent;
     } else {
       await loadCart();
     }
   } catch (error) {
     alert("Press One At a Time.");
+    btn.disabled = false;
+    btn.innerHTML = originalContent;
   }
 }
 
-async function delproduct(id) {
+async function delproduct(id, btn) {
+  if (!btn) return;
+  const originalContent = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<div class="drip-spinner-sm-theme" style="width: 16px; height: 16px; border-width: 2px;"></div>';
+
   try {
     let res = await fetch("/api/user/cart/delete", {
       method: "DELETE",
@@ -145,30 +168,43 @@ async function delproduct(id) {
     let data = await res.json();
     if (!data.success) {
       alert(data.message);
+      btn.disabled = false;
+      btn.innerHTML = originalContent;
     } else {
       await loadCart();
     }
   } catch (error) {
     alert("Something went wrong. Please try again.");
+    btn.disabled = false;
+    btn.innerHTML = originalContent;
   }
 }
 
-document.getElementById("clearcart").addEventListener("click", async () => {
+document.getElementById("clearcart").addEventListener("click", async (e) => {
   try {
     let result = confirm("All Products Will Be Deleted.");
     if (result) {
-      let res = await fetch("/api/user/cart/clear", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      });
+      const clearBtn = e.currentTarget;
+      const originalText = clearBtn.innerHTML;
+      clearBtn.disabled = true;
+      clearBtn.innerHTML = '<span class="drip-spinner-sm"></span>';
 
-      let data = await res.json();
+      try {
+        let res = await fetch("/api/user/cart/clear", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        });
 
-      if (!data.success) {
-        alert(data.message);
-      } else {
-        // location.reload()
-        await loadCart();
+        let data = await res.json();
+
+        if (!data.success) {
+          alert(data.message);
+        } else {
+          await loadCart();
+        }
+      } finally {
+        clearBtn.disabled = false;
+        clearBtn.innerHTML = originalText;
       }
     }
   } catch (error) {
